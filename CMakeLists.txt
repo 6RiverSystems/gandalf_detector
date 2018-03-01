@@ -11,19 +11,18 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
 )
 
-if (NOT $ENV{ROS_DISTRO} STREQUAL "hydro" AND NOT $ENV{ROS_DISTRO} STREQUAL "indigo")
-  message("!!! Only ROS hydro and indigo tested with gandalf_detector !!!")
-endif()
+# if (NOT $ENV{ROS_DISTRO} STREQUAL "hydro" AND NOT $ENV{ROS_DISTRO} STREQUAL "indigo")
+#  message("!!! Only ROS hydro and indigo tested with gandalf_detector !!!")
+# endif()
 
-if ($ENV{ROS_DISTRO} STREQUAL "indigo" )
-  find_package(cmake_modules REQUIRED)
-endif()
+# if ($ENV{ROS_DISTRO} STREQUAL "indigo" )
+#  find_package(cmake_modules REQUIRED)
+# endif()
 
-find_package(Eigen REQUIRED)
+find_package(Eigen3 REQUIRED)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
-
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -111,7 +110,7 @@ include_directories(
   components/AdaBoostTreeClassifier/include
   components/LaserBasedObjectDetection/include
   ${catkin_INCLUDE_DIRS}
-  ${Eigen_INCLUDE_DIRS}
+  ${EIGEN3_INCLUDE_DIR}
 )
 
 ## Declare a cpp library
