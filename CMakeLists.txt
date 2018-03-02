@@ -12,6 +12,11 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 find_package(Eigen3 REQUIRED)
+find_package(OpenCV 2 REQUIRED COMPONENTS opencv_ml opencv_core)
+
+MESSAGE(STATUS "OpenCV_VERSION: " ${OpenCV_VERSION})
+MESSAGE(STATUS "OpenCV_INCLUDE_DIRS: " ${OpenCV_INCLUDE_DIRS})
+MESSAGE(STATUS "OpenCV_LIBRARIES: " ${OpenCV_LIBS})
 
 ## System dependencies are found with CMake's conventions
 Find_package(Boost REQUIRED COMPONENTS system)
@@ -65,7 +70,7 @@ add_executable(gandalf_detector_node src/gandalf_detector_node.cpp)
 ## as an example, message headers may need to be generated before nodes
 add_dependencies(gandalf_detector_node 
 	gandalf_detector_generate_messages_cpp,
-	opencv_ml, opencv_core
+	${OpenCV_LIBS}
 )
 		
 ## Specify libraries to link a library or executable target against
@@ -73,8 +78,7 @@ target_link_libraries(gandalf_detector_node
   ${catkin_LIBRARIES}
   ${Boost_LIBRARIES}
   gandalf_detector
-  opencv_ml
-  opencv_core
+  ${OpenCV_LIBS}
 )
 
 #############
